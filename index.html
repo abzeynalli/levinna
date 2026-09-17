@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Levinna — Furniture & Interior Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15110D;
+    --espresso:#2B2019;
+    --walnut:#3B2A20;
+    --bone:#EFE7D8;
+    --parchment:#F3EDE1;
+    --panel:#FAF7F1;
+    --stone:#6B6459;
+    --brass:#B8935B;
+    --charcoal:#2A2420;
+    --line:rgba(21,17,13,0.14);
+    --line-light:rgba(239,231,216,0.22);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  section[id],#top{scroll-margin-top:100px;}
+  body{
+    margin:0;background:var(--parchment);color:var(--charcoal);
+    font-family:'Karla',sans-serif;font-size:16px;line-height:1.6;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  button{font-family:'Karla',sans-serif;}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:26px 0;transition:background .35s ease,padding .35s ease,border-color .35s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.solid{background:rgba(59,42,32,0.94);backdrop-filter:blur(6px);padding:16px 0;border-color:var(--line-light);}
+  .headerbar{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Fraunces',serif;font-size:24px;font-weight:600;color:var(--bone);text-decoration:none;letter-spacing:0.01em;}
+  nav.mainnav{display:flex;gap:34px;}
+  nav.mainnav a{text-decoration:none;font-size:14px;color:var(--bone);opacity:0.86;}
+  nav.mainnav a:hover{opacity:1;}
+  .headerright{display:flex;align-items:center;gap:26px;}
+  .langswitch{display:flex;gap:4px;font-size:13px;}
+  .langswitch button{background:none;border:1px solid transparent;color:var(--bone);opacity:0.7;padding:4px 8px;cursor:pointer;font-size:13px;}
+  .langswitch button.active{opacity:1;border-color:var(--line-light);}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .navtoggle span{display:block;width:22px;height:2px;background:var(--bone);margin:5px 0;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--walnut);}
+  .hero-art{position:absolute;inset:0;}
+  .hero-art svg{width:100%;height:100%;}
+  .hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(59,42,32,0.1) 0%,rgba(59,42,32,0.15) 40%,rgba(46,32,21,0.72) 100%);}
+  .hero-content{position:relative;z-index:2;padding-bottom:88px;width:100%;}
+  .hero-eyebrow{color:var(--brass);font-size:15px;margin:0 0 20px;}
+  .hero h1{font-size:clamp(48px,7vw,92px);line-height:0.98;margin:0 0 26px;color:var(--bone);max-width:14ch;}
+  .hero p.lead{font-size:19px;max-width:44ch;color:#D9CBB6;margin:0 0 38px;}
+  .hero-actions{display:flex;gap:18px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:15px 30px;text-decoration:none;font-size:15px;font-weight:600;cursor:pointer;border:1px solid var(--bone);transition:background .2s ease,color .2s ease;}
+  .btn-primary{background:var(--bone);color:var(--ink);}
+  .btn-primary:hover{background:var(--brass);border-color:var(--brass);}
+  .btn-ghost{background:transparent;color:var(--bone);}
+  .btn-ghost:hover{background:rgba(239,231,216,0.12);}
+  .scrollcue{position:absolute;bottom:32px;right:40px;z-index:2;color:var(--bone);opacity:0.7;font-size:13px;display:flex;align-items:center;gap:10px;}
+  .scrollcue .bar{width:1px;height:34px;background:var(--bone);opacity:0.5;}
+
+  /* ---------- Philosophy ---------- */
+  .philosophy{padding:140px 0;text-align:center;}
+  .philosophy blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(24px,3.4vw,38px);line-height:1.4;color:var(--ink);
+    max-width:26ch;margin:0 auto 28px;
+  }
+  .philosophy cite{font-style:normal;font-size:14px;color:var(--stone);}
+  .rule{width:56px;height:1px;background:var(--brass);margin:0 auto 40px;}
+
+  /* ---------- Collections ---------- */
+  .collections{background:var(--panel);}
+  .collrow{display:grid;grid-template-columns:1fr 1fr;min-height:82vh;}
+  .collrow.reverse .coll-art{order:2;}
+  .coll-art{position:relative;overflow:hidden;}
+  .coll-art svg{width:100%;height:100%;object-fit:cover;}
+  .tone1{background:linear-gradient(150deg,#C9AE86 0%,#8A6B47 55%,#4A3620 100%);}
+  .tone2{background:linear-gradient(150deg,#9C8E77 0%,#6E5B41 55%,#3A2C1C 100%);}
+  .tone3{background:linear-gradient(150deg,#B7A587 0%,#7C6544 55%,#40301C 100%);}
+  .tone4{background:linear-gradient(150deg,#8B8A82 0%,#5F5D54 55%,#302E27 100%);}
+  .coll-text{display:flex;flex-direction:column;justify-content:center;padding:80px;}
+  .coll-num{font-family:'Fraunces',serif;font-style:italic;color:var(--brass);font-size:15px;margin:0 0 18px;}
+  .coll-text h3{font-size:clamp(30px,3.4vw,44px);margin:0 0 20px;}
+  .coll-text p.desc{color:var(--walnut);max-width:44ch;margin:0 0 28px;font-size:16px;}
+  .coll-pieces{list-style:none;padding:0;margin:0 0 32px;display:flex;flex-direction:column;gap:0;}
+  .coll-pieces li{padding:13px 0;border-top:1px solid var(--line);font-size:15px;display:flex;justify-content:space-between;align-items:baseline;}
+  .coll-pieces li:last-child{border-bottom:1px solid var(--line);}
+  .coll-pieces .pname{color:var(--ink);}
+  .coll-pieces .pnote{color:var(--stone);font-size:13px;}
+  .coll-cta{background:none;border:none;padding:0;font-size:15px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;color:var(--ink);align-self:flex-start;}
+
+  /* ---------- Approach ---------- */
+  .approach{background:var(--panel);color:var(--charcoal);padding:130px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .approach-head{max-width:52ch;margin-bottom:80px;}
+  .approach-head h2{color:var(--ink);font-size:clamp(28px,3.4vw,40px);margin:0;}
+  .approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:60px;}
+  .approach-item .num{font-family:'Fraunces',serif;font-style:italic;font-size:56px;color:var(--brass);margin:0 0 18px;line-height:1;}
+  .approach-item h4{color:var(--ink);font-family:'Fraunces',serif;font-weight:500;font-size:21px;margin:0 0 12px;}
+  .approach-item p{color:var(--walnut);font-size:15px;margin:0;max-width:32ch;}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--walnut);color:var(--bone);padding:120px 0;}
+  .contact .wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:80px;}
+  .contact-eyebrow{color:var(--brass);font-size:14px;margin:0 0 18px;}
+  .contact h2{color:var(--bone);font-size:clamp(30px,3.4vw,42px);margin:0 0 20px;}
+  .contact p.lead{color:#D9CBB6;max-width:42ch;margin:0 0 40px;}
+  .store-detail{display:flex;flex-direction:column;gap:20px;margin-bottom:36px;}
+  .store-detail div{font-size:16px;color:#EFE7D8;}
+  .store-detail small{display:block;color:#A8977C;font-size:12px;letter-spacing:0.03em;margin-bottom:3px;}
+  .wa-btn{display:inline-flex;align-items:center;gap:10px;background:var(--bone);color:var(--ink);padding:14px 24px;text-decoration:none;font-weight:600;font-size:15px;}
+  .wa-btn:hover{background:var(--brass);color:var(--ink);}
+
+  form{display:flex;flex-direction:column;gap:18px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field label{font-size:13px;color:#B79E7D;}
+  .field input,.field select,.field textarea{
+    background:transparent;border:none;border-bottom:1px solid rgba(239,231,216,0.32);
+    color:var(--bone);padding:10px 2px;font-family:'Karla',sans-serif;font-size:16px;
+  }
+  .field select option{color:#111;}
+  .field input::placeholder,.field textarea::placeholder{color:#7A6B54;}
+  .field textarea{resize:vertical;min-height:88px;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brass);}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .submit-btn{background:var(--brass);color:var(--ink);border:none;padding:15px 28px;font-weight:700;cursor:pointer;font-size:15px;align-self:flex-start;margin-top:8px;}
+  .submit-btn:hover{background:#cba76a;}
+  .form-note{font-size:12px;color:#8f7f68;margin-top:6px;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:44px 0;background:var(--walnut);border-top:1px solid var(--line-light);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  footer .flogo{font-family:'Fraunces',serif;color:var(--bone);font-size:19px;}
+  .fsocial{display:flex;gap:22px;}
+  .fsocial a{color:#BDB09A;text-decoration:none;font-size:14px;}
+  .fsocial a:hover{color:var(--bone);}
+  .fcopy{color:#7A6B54;font-size:13px;}
+
+  .wa-float{position:fixed;right:26px;bottom:26px;z-index:90;width:58px;height:58px;border-radius:50%;background:var(--walnut);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,0.32);text-decoration:none;}
+  .wa-float svg{width:26px;height:26px;stroke:var(--bone);}
+
+  /* ---------- Mobile nav panel ---------- */
+  .mobilenav{position:fixed;top:0;left:0;right:0;height:0;overflow:hidden;background:var(--walnut);z-index:95;transition:height .4s cubic-bezier(.65,0,.35,1);}
+  .mobilenav.open{height:100vh;}
+  .mobilenav-inner{padding:110px 28px 40px;display:flex;flex-direction:column;gap:2px;}
+  .mobilenav-inner a{display:block;padding:16px 0;border-bottom:1px solid var(--line-light);text-decoration:none;color:var(--bone);font-family:'Fraunces',serif;font-size:22px;}
+  .mobilenav-langs{display:flex;gap:10px;margin-top:26px;}
+  .mobilenav-langs button{background:none;border:1px solid var(--line-light);color:var(--bone);opacity:0.75;padding:8px 14px;font-size:13px;cursor:pointer;}
+  .mobilenav-langs button.active{opacity:1;border-color:var(--brass);}
+
+  /* ---------- Section kicker (shared) ---------- */
+  .kicker{font-family:'Fraunces',serif;font-style:italic;color:var(--brass);font-size:15px;margin:0 0 16px;}
+  .section-head{max-width:56ch;margin:0 0 64px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,42px);margin:0 0 18px;}
+  .section-head p.lead{color:var(--walnut);font-size:16px;max-width:52ch;margin:0;}
+
+  /* ---------- Systems (tall rectangle cards) ---------- */
+  .systems-hero{background:var(--walnut);color:var(--bone);padding:0 0 130px;overflow:hidden;}
+  .systems-hero .section-head{color:var(--bone);}
+  .systems-hero .section-head h2{color:var(--bone);}
+  .systems-hero .section-head p.lead{color:#D9CBB6;}
+
+  .systems-video{position:relative;width:100%;height:82vh;min-height:480px;max-height:840px;overflow:hidden;background:var(--walnut);}
+  .systems-video video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .systems-video-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(21,17,13,0.1) 0%,rgba(21,17,13,0.35) 60%,rgba(21,17,13,0.82) 100%);}
+  .systems-video-content{position:absolute;left:0;right:0;bottom:70px;z-index:2;}
+  .systems-video-content .kicker{color:var(--brass);}
+  .systems-video-content h2{color:var(--bone);}
+  .systems-video-content p.lead{color:#D9CBB6;max-width:52ch;}
+  .video-mute-toggle{position:absolute;right:26px;bottom:26px;z-index:3;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-light);background:rgba(21,17,13,0.5);backdrop-filter:blur(3px);color:var(--bone);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s ease,border-color .2s ease;}
+  .video-mute-toggle:hover{background:rgba(21,17,13,0.75);border-color:var(--brass);}
+  .video-mute-toggle svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+  .sysgrid-scroller{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;margin-top:64px;}
+  .sysgrid-scroller::-webkit-scrollbar{display:none;}
+  .sysgrid-track{display:flex;gap:20px;padding:0 40px 8px;}
+  .syscard{flex:0 0 380px;scroll-snap-align:start;display:flex;flex-direction:column;gap:14px;}
+  .syscard-photo{position:relative;overflow:hidden;aspect-ratio:1600/1000;background:var(--espresso);}
+  .syscard-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .syscard-explore{align-self:flex-start;background:none;border:none;padding:0 0 3px;font-family:'Karla',sans-serif;font-size:13px;color:var(--bone);border-bottom:1px solid var(--brass);cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+  .sysgrid-wrap{position:relative;}
+  .sysgrid-arrow{position:absolute;top:calc(50% - 10px);transform:translateY(-50%);width:50px;height:50px;border-radius:50%;border:1px solid var(--line-light);background:rgba(21,17,13,0.55);backdrop-filter:blur(3px);color:var(--bone);font-size:21px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3;transition:background .2s ease,border-color .2s ease;}
+  .sysgrid-arrow:hover{background:rgba(21,17,13,0.8);border-color:var(--brass);}
+  .sysgrid-arrow.prev{left:12px;}
+  .sysgrid-arrow.next{right:12px;}
+  .sysgrid-progress{max-width:1240px;margin:30px auto 0;height:1px;background:var(--line-light);position:relative;}
+  .sysgrid-progress .bar{position:absolute;top:-1.5px;left:0;height:4px;background:var(--brass);width:30%;transition:width .2s ease;}
+
+  /* ---------- Spaces (four environments) ---------- */
+  .spaces{background:var(--panel);}
+  .spaces .section-head{padding:110px 40px 0;max-width:640px;margin:0 auto 0;}
+  .space-art .sys-icon{width:26%;max-width:150px;color:#FAF7F1;opacity:0.9;position:relative;z-index:1;}
+  .space-art{display:flex;align-items:center;justify-content:center;}
+
+  /* ---------- B2B ---------- */
+  .b2b{background:var(--ink);color:var(--bone);padding:130px 0;}
+  .b2b .section-head{color:var(--bone);}
+  .b2b .section-head h2{color:var(--bone);}
+  .b2b .section-head p.lead{color:#B8AE9E;}
+  .b2b-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border:1px solid var(--line-light);}
+  .b2b-item{background:var(--ink);padding:40px 30px;}
+  .b2b-item .num{font-family:'Fraunces',serif;font-style:italic;color:var(--brass);font-size:14px;margin:0 0 22px;}
+  .b2b-item h4{color:var(--bone);font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin:0 0 12px;}
+  .b2b-item p{color:#B8AE9E;font-size:14px;margin:0;}
+  .b2b-cta-row{margin-top:56px;display:flex;}
+
+  @media (max-width:960px){
+    nav.mainnav{display:none;}
+    .navtoggle{display:block;}
+    .collrow,.collrow.reverse{grid-template-columns:1fr;}
+    .collrow.reverse .coll-art{order:0;}
+    .coll-art{aspect-ratio:16/10;}
+    .coll-text{padding:52px 28px;}
+    .approach-grid{grid-template-columns:1fr;gap:44px;}
+    .contact .wrap{grid-template-columns:1fr;gap:56px;}
+    .row2{grid-template-columns:1fr;}
+    .wrap{padding:0 22px;}
+    .spaces .section-head{padding:80px 22px 0;}
+    .systems-hero{padding:0 0 90px;}
+    .systems-video{height:60vh;min-height:380px;}
+    .systems-video-content{bottom:44px;}
+    .video-mute-toggle{width:42px;height:42px;right:16px;bottom:16px;}
+    .sysgrid-track{padding:0 22px;gap:14px;}
+    .syscard{flex:0 0 82vw;}
+    .sysgrid-arrow{width:40px;height:40px;font-size:17px;}
+    .sysgrid-arrow.prev{left:6px;}
+    .sysgrid-arrow.next{right:6px;}
+    .b2b{padding:90px 0;}
+    .b2b-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <g id="icon-stroke-defaults" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+    <symbol id="icon-home" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M38 102 L100 48 L162 102"/>
+      <path d="M55 96 V162 H145 V96"/>
+      <path d="M88 162 V118 H112 V162"/>
+    </symbol>
+    <symbol id="icon-office" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="38" y="122" width="124" height="9"/>
+      <path d="M48 131 V158 M152 131 V158"/>
+      <rect x="73" y="58" width="54" height="40" rx="2"/>
+      <path d="M100 98 V113"/>
+      <path d="M78 113 H122"/>
+    </symbol>
+    <symbol id="icon-hotel" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="34" y="112" width="132" height="44" rx="6"/>
+      <path d="M34 156 V172 M166 156 V172"/>
+      <path d="M44 112 V86 A10 10 0 0 1 54 76 H96 A10 10 0 0 1 106 86 V112"/>
+      <rect x="118" y="100" width="32" height="20" opacity="0.55"/>
+    </symbol>
+    <symbol id="icon-restaurant" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="104" cy="100" r="44"/>
+      <circle cx="104" cy="100" r="20" opacity="0.5"/>
+      <path d="M50 58 V142 M50 58 A7 7 0 0 1 57 65 V90 A7 7 0 0 1 50 97"/>
+      <path d="M158 58 V142 M158 58 C167 58 167 92 158 92"/>
+    </symbol>
+    <symbol id="icon-kitchen-whole" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="28" y="118" width="144" height="46"/>
+      <path d="M28 118 H172"/>
+      <rect x="40" y="48" width="62" height="36" opacity="0.55"/>
+      <circle cx="142" cy="98" r="6"/>
+    </symbol>
+    <symbol id="icon-tall-cabinet" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="64" y="28" width="72" height="152"/>
+      <path d="M64 70 H136 M64 112 H136 M64 154 H136"/>
+    </symbol>
+    <symbol id="icon-wall-cabinet" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="44" y="92" width="112" height="58"/>
+      <path d="M44 92 Q80 40 112 76" opacity="0.6"/>
+    </symbol>
+    <symbol id="icon-corner" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M38 38 H120 V90 H162 V162 H38 Z"/>
+      <path d="M38 90 H120" opacity="0.5"/>
+    </symbol>
+    <symbol id="icon-base-cabinet" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="34" y="112" width="132" height="54"/>
+      <path d="M34 132 H166" opacity="0.5"/>
+      <path d="M100 58 V94 M88 82 L100 94 L112 82" opacity="0.7"/>
+    </symbol>
+    <symbol id="icon-drawer-organizer" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="34" y="80" width="132" height="50"/>
+      <path d="M70 80 V130 M106 80 V130 M142 80 V130"/>
+    </symbol>
+    <symbol id="icon-side-basket" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="78" y="38" width="42" height="132"/>
+      <path d="M78 60 H120 M78 92 H120 M78 124 H120 M78 154 H120" opacity="0.55"/>
+    </symbol>
+    <symbol id="icon-waste" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M60 70 H140 L130 166 H70 Z"/>
+      <path d="M48 70 H152 M85 70 V50 H115 V70"/>
+    </symbol>
+    <symbol id="icon-sink" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="38" y="90" width="124" height="56" rx="10"/>
+      <path d="M100 90 V58 Q100 42 120 42" opacity="0.7"/>
+      <circle cx="100" cy="120" r="6" opacity="0.5"/>
+    </symbol>
+    <symbol id="icon-wardrobe" viewBox="0 0 200 200" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="44" y="34" width="112" height="152"/>
+      <path d="M100 34 V186" opacity="0.5"/>
+      <path d="M58 64 H92" opacity="0.55"/>
+      <path d="M58 64 V96" opacity="0.4"/>
+    </symbol>
+    <symbol id="icon-sound-on" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor" stroke="none"/>
+      <path d="M16.5 8.5a5 5 0 0 1 0 7"/>
+      <path d="M19 6a9 9 0 0 1 0 12"/>
+    </symbol>
+    <symbol id="icon-sound-off" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 9v6h4l5 4V5L8 9H4Z" fill="currentColor" stroke="none"/>
+      <path d="M16 9l5 6M21 9l-5 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header id="siteHeader">
+  <div class="wrap headerbar">
+    <a href="#top" class="logo">Levinna</a>
+    <nav class="mainnav">
+      <a href="#spaces" data-i18n="nav.spaces">Spaces</a>
+      <a href="#systems" data-i18n="nav.systems">Systems</a>
+      <a href="#b2b" data-i18n="nav.b2b">B2B</a>
+      <a href="#approach" data-i18n="nav.approach">Our Approach</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="headerright">
+      <div class="langswitch">
+        <button data-lang="uk">UA</button>
+        <button data-lang="ru">RU</button>
+        <button data-lang="en" class="active">EN</button>
+      </div>
+      <button class="navtoggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobilenav" id="mobileNav">
+  <div class="mobilenav-inner">
+    <a href="#spaces" data-i18n="nav.spaces">Spaces</a>
+    <a href="#systems" data-i18n="nav.systems">Systems</a>
+    <a href="#b2b" data-i18n="nav.b2b">B2B</a>
+    <a href="#approach" data-i18n="nav.approach">Our Approach</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+    <div class="mobilenav-langs">
+      <button data-lang="uk">UA</button>
+      <button data-lang="ru">RU</button>
+      <button data-lang="en" class="active">EN</button>
+    </div>
+  </div>
+</div>
+
+<section class="hero" id="top">
+  <div class="hero-art">
+    <img src="images/hero.jpg" alt="Levinna interior" style="width:100%;height:100%;object-fit:cover;">
+  </div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero-content">
+    <p class="hero-eyebrow serif" data-i18n="hero.eyebrow">Levinna — Furniture &amp; Interior Systems</p>
+    <h1 data-i18n="hero.title">Furniture and systems, considered.</h1>
+    <p class="lead" data-i18n="hero.lead">Thoughtfully designed furniture and interior systems for homes, workplaces and hospitality spaces.</p>
+    <div class="hero-actions">
+      <a href="#spaces" class="btn btn-primary" data-i18n="hero.cta1">Explore our spaces</a>
+      <a href="#systems" class="btn btn-ghost" data-i18n="hero.cta2">Explore systems</a>
+    </div>
+  </div>
+  <div class="scrollcue"><span class="bar"></span><span data-i18n="hero.scroll">Scroll</span></div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap">
+    <div class="rule"></div>
+    <blockquote data-i18n="phil.quote">Furniture should feel like it was always meant to be there — quiet, solid, and built to last longer than the trends around it.</blockquote>
+    <cite data-i18n="phil.cite">— The Levinna workshop</cite>
+  </div>
+</section>
+
+<section class="collections spaces" id="spaces">
+
+  <div class="wrap section-head">
+    <p class="kicker" data-i18n="spaces.kicker">Spaces</p>
+    <h2 data-i18n="spaces.title">Four environments. Endless possibility.</h2>
+  </div>
+
+  <div class="collrow">
+    <div class="coll-art space-art home tone1">
+      <img src="images/home.jpg" alt="Home" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="coll-text">
+      <p class="coll-num serif" data-i18n="space.home.num">Space I</p>
+      <h3 data-i18n="space.home.title">Home</h3>
+      <p class="desc" data-i18n="space.home.desc">Considered furniture for daily life at home — deep-seated sofas, dining tables and bedroom pieces built on solid hardwood frames.</p>
+      <ul class="coll-pieces">
+        <li><span class="pname" data-i18n="item.sofa.name">Sofa, three-seat</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+        <li><span class="pname" data-i18n="item.bed.name">Bed frame, queen</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+      </ul>
+      <button class="coll-cta" data-i18n="space.cta" data-interest="home">Inquire about this space</button>
+    </div>
+  </div>
+
+  <div class="collrow reverse">
+    <div class="coll-art space-art office tone4">
+      <img src="images/office.jpg" alt="Office" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="coll-text">
+      <p class="coll-num serif" data-i18n="space.office.num">Space II</p>
+      <h3 data-i18n="space.office.title">Office</h3>
+      <p class="desc" data-i18n="space.office.desc">Desks, storage and seating built for long days — steel-framed, cable-managed, and finished to match the rest of the room.</p>
+      <ul class="coll-pieces">
+        <li><span class="pname" data-i18n="item.desk.name">Workstation desk</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+        <li><span class="pname" data-i18n="item.cabinet.name">Storage cabinet</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+      </ul>
+      <button class="coll-cta" data-i18n="space.cta" data-interest="office">Inquire about this space</button>
+    </div>
+  </div>
+
+  <div class="collrow">
+    <div class="coll-art space-art hotel tone2">
+      <img src="images/hotel.jpg" alt="Hotel" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="coll-text">
+      <p class="coll-num serif" data-i18n="space.hotel.num">Space III</p>
+      <h3 data-i18n="space.hotel.title">Hotel</h3>
+      <p class="desc" data-i18n="space.hotel.desc">Furniture and systems for guest rooms and public areas, built to withstand daily use without losing its quiet, considered character.</p>
+      <ul class="coll-pieces">
+        <li><span class="pname" data-i18n="item.guestbed.name">Guest room bed frame</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+        <li><span class="pname" data-i18n="item.lobby.name">Lobby seating</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+      </ul>
+      <button class="coll-cta" data-i18n="space.cta" data-interest="hotel">Inquire about this space</button>
+    </div>
+  </div>
+
+  <div class="collrow reverse">
+    <div class="coll-art space-art restaurant tone3">
+      <img src="images/restaurant.jpg" alt="Restaurant" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+    <div class="coll-text">
+      <p class="coll-num serif" data-i18n="space.restaurant.num">Space IV</p>
+      <h3 data-i18n="space.restaurant.title">Restaurant</h3>
+      <p class="desc" data-i18n="space.restaurant.desc">Dining and service furniture built to gather around, with finishes matched across every piece in the setting.</p>
+      <ul class="coll-pieces">
+        <li><span class="pname" data-i18n="item.table.name">Dining table, round</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+        <li><span class="pname" data-i18n="item.chair.name">Dining chairs, set</span><span class="pnote" data-i18n="price.request">Price on request</span></li>
+      </ul>
+      <button class="coll-cta" data-i18n="space.cta" data-interest="restaurant">Inquire about this space</button>
+    </div>
+  </div>
+
+</section>
+
+<section class="systems-hero" id="systems">
+
+  <div class="systems-video">
+    <video autoplay muted loop playsinline preload="metadata" poster="images/01_whole_kitchen_system.jpg">
+      <source src="videos/systems_slideshow.mp4" type="video/mp4">
+    </video>
+    <div class="systems-video-scrim"></div>
+    <div class="wrap systems-video-content">
+      <p class="kicker" data-i18n="systems.kicker">Systems</p>
+      <h2 data-i18n="systems.title">Function, refined.</h2>
+      <p class="lead" data-i18n="systems.lead">Intelligent kitchen, storage and wardrobe systems designed to bring movement, accessibility and order to contemporary interiors.</p>
+    </div>
+    <button class="video-mute-toggle" id="sysVideoMute" aria-label="Unmute video">
+      <svg viewBox="0 0 24 24" id="sysVideoMuteIcon"><use href="#icon-sound-off"/></svg>
+    </button>
+  </div>
+
+  <div class="sysgrid-wrap">
+    <button class="sysgrid-arrow prev" id="sysPrev" aria-label="Previous systems">&lsaquo;</button>
+    <div class="sysgrid-scroller" id="sysScroller">
+    <div class="sysgrid-track" id="sysTrack">
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/01_whole_kitchen_system.jpg" alt="Whole Kitchen System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys1.explore" data-interest="kitchen-systems">Explore Whole Kitchen &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/02_tall_cabinet_system.jpg" alt="Tall Cabinet System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys2.explore" data-interest="kitchen-systems">Explore Tall Cabinets &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/03_wall_cabinet_system.jpg" alt="Wall Cabinet System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys3.explore" data-interest="kitchen-systems">Explore Wall Cabinets &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/04_corner_storage_system.jpg" alt="Corner Storage System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys4.explore" data-interest="kitchen-systems">Explore Corner Storage &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/05_base_cabinet_system.jpg" alt="Base Cabinet System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys5.explore" data-interest="kitchen-systems">Explore Base Cabinets &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/06_drawer_organization_system.jpg" alt="Drawer Organization System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys6.explore" data-interest="kitchen-systems">Explore Drawer Organization &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/07_side_basket_system.jpg" alt="Side Basket System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys7.explore" data-interest="kitchen-systems">Explore Side Baskets &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/08_waste_management_system.jpg" alt="Waste Management System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys8.explore" data-interest="kitchen-systems">Explore Waste Management &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/09_sink_system.jpg" alt="Sink System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys9.explore" data-interest="kitchen-systems">Explore Sink System &rarr;</button>
+      </div>
+
+      <div class="syscard">
+        <div class="syscard-photo">
+          <img src="images/10_wardrobe_system.jpg" alt="Wardrobe System" loading="lazy">
+        </div>
+        <button class="syscard-explore" data-i18n="sys10.explore" data-interest="wardrobe-systems">Explore Wardrobes &rarr;</button>
+      </div>
+
+    </div>
+    </div>
+    <button class="sysgrid-arrow next" id="sysNext" aria-label="Next systems">&rsaquo;</button>
+  </div>
+  <div class="wrap">
+    <div class="sysgrid-progress"><div class="bar" id="sysProgressBar"></div></div>
+  </div>
+</section>
+
+<section class="b2b" id="b2b">
+  <div class="wrap section-head">
+    <p class="kicker" data-i18n="b2b.kicker">B2B</p>
+    <h2 data-i18n="b2b.title">Solutions for professionals.</h2>
+    <p class="lead" data-i18n="b2b.lead">Furniture and interior systems specified for architects, designers, developers, contractors, hotels, restaurants and trade partners.</p>
+  </div>
+  <div class="wrap">
+    <div class="b2b-grid">
+      <div class="b2b-item">
+        <p class="num">01</p>
+        <h4 data-i18n="b2b.card1.title">Architects &amp; Designers</h4>
+        <p data-i18n="b2b.card1.desc">Project specification, custom solutions and technical support.</p>
+      </div>
+      <div class="b2b-item">
+        <p class="num">02</p>
+        <h4 data-i18n="b2b.card2.title">Developers &amp; Contractors</h4>
+        <p data-i18n="b2b.card2.desc">Reliable furniture and interior systems for residential and commercial projects.</p>
+      </div>
+      <div class="b2b-item">
+        <p class="num">03</p>
+        <h4 data-i18n="b2b.card3.title">Hotels &amp; Restaurants</h4>
+        <p data-i18n="b2b.card3.desc">Furniture and functional systems designed for hospitality environments.</p>
+      </div>
+      <div class="b2b-item">
+        <p class="num">04</p>
+        <h4 data-i18n="b2b.card4.title">Trade Partners</h4>
+        <p data-i18n="b2b.card4.desc">Solutions for showrooms, dealers and professional distribution partners.</p>
+      </div>
+    </div>
+    <div class="b2b-cta-row">
+      <button class="btn btn-primary" id="b2bCta" data-i18n="b2b.cta" style="background:var(--brass);border-color:var(--brass);color:var(--ink);">Start a B2B enquiry</button>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="approach-head">
+      <h2 data-i18n="approach.title">Made deliberately, from the frame up</h2>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-item">
+        <p class="num">01</p>
+        <h4 data-i18n="approach.t1h">Materials</h4>
+        <p data-i18n="approach.t1p">Solid hardwoods and durable hardware, chosen for the long run rather than the showroom floor.</p>
+      </div>
+      <div class="approach-item">
+        <p class="num">02</p>
+        <h4 data-i18n="approach.t2h">Craftsmanship</h4>
+        <p data-i18n="approach.t2p">Every piece built and finished by hand, checked before it leaves the workshop.</p>
+      </div>
+      <div class="approach-item">
+        <p class="num">03</p>
+        <h4 data-i18n="approach.t3h">Made to order</h4>
+        <p data-i18n="approach.t3p">Sized and finished to fit your room, not built to sit on a warehouse shelf.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <p class="contact-eyebrow serif" data-i18n="contact.eyebrow">Visit or write to us</p>
+      <h2 data-i18n="contact.title">Let's talk about your space</h2>
+      <p class="lead" data-i18n="contact.lead">Send a few details and we'll follow up with materials, pricing and lead times — or message us directly on WhatsApp.</p>
+      <div class="store-detail">
+        <div><small data-i18n="contact.phonelabel">Phone / WhatsApp</small>+380 73 094 40 27</div>
+        <div><small data-i18n="contact.emaillabel">Email</small>hello@levinna.com</div>
+        <div><small data-i18n="contact.addresslabel">Showroom</small>Lviv, Ukraine</div>
+      </div>
+      <a class="wa-btn" href="https://wa.me/380730944027" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12a8 8 0 1 1-14.7-4.4L4 20l4.6-1.2A8 8 0 0 1 20 12z"/></svg>
+        <span data-i18n="contact.wabtn">Message us on WhatsApp</span>
+      </a>
+    </div>
+    <div>
+      <form id="orderForm">
+        <div class="row2">
+          <div class="field">
+            <label data-i18n="form.name">Name</label>
+            <input type="text" name="name" required placeholder="—">
+          </div>
+          <div class="field">
+            <label data-i18n="form.phone">Phone</label>
+            <input type="tel" name="phone" required placeholder="—">
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="form.interest">Interested in</label>
+          <select name="interest" id="interestSelect">
+            <option value="home" data-i18n="space.home.title">Home</option>
+            <option value="office" data-i18n="space.office.title">Office</option>
+            <option value="hotel" data-i18n="space.hotel.title">Hotel</option>
+            <option value="restaurant" data-i18n="space.restaurant.title">Restaurant</option>
+            <option value="kitchen-systems" data-i18n="contact.opt.kitchensystems">Kitchen Systems</option>
+            <option value="wardrobe-systems" data-i18n="contact.opt.wardrobesystems">Wardrobe Systems</option>
+            <option value="b2b" data-i18n="contact.opt.b2b">B2B / Trade</option>
+            <option value="custom" data-i18n="contact.opt.custom">Custom Project</option>
+            <option value="other" data-i18n="form.other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label data-i18n="form.message">Message</label>
+          <textarea name="message" data-i18n-ph="form.messageph" placeholder="—"></textarea>
+        </div>
+        <button type="submit" class="submit-btn" data-i18n="form.submit">Send inquiry</button>
+        <p class="form-note" data-i18n="form.note">This form opens your email app with the details pre-filled — connect it to a live inbox before launch.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="flogo">Levinna</div>
+    <div class="fsocial">
+      <a href="#" data-i18n="footer.instagram">Instagram</a>
+      <a href="#" data-i18n="footer.facebook">Facebook</a>
+      <a href="https://wa.me/380730944027" target="_blank" rel="noopener" data-i18n="footer.whatsapp">WhatsApp</a>
+    </div>
+    <div class="fcopy" data-i18n="footer.copy">© 2026 Levinna. All rights reserved.</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/380730944027" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 12a8 8 0 1 1-14.7-4.4L4 20l4.6-1.2A8 8 0 0 1 20 12z"/></svg>
+</a>
+
+<script>
+const translations = {
+  en: {
+    "nav.spaces":"Spaces","nav.systems":"Systems","nav.b2b":"B2B","nav.approach":"Our Approach","nav.contact":"Contact",
+    "hero.eyebrow":"Levinna — Furniture & Interior Systems",
+    "hero.title":"Furniture and systems, considered.",
+    "hero.lead":"Thoughtfully designed furniture and interior systems for homes, workplaces and hospitality spaces.",
+    "hero.cta1":"Explore our spaces","hero.cta2":"Explore systems","hero.scroll":"Scroll",
+    "phil.quote":"Furniture should feel like it was always meant to be there — quiet, solid, and built to last longer than the trends around it.",
+    "phil.cite":"— The Levinna workshop",
+
+    "systems.kicker":"Systems","systems.title":"Function, refined.",
+    "systems.lead":"Intelligent kitchen, storage and wardrobe systems designed to bring movement, accessibility and order to contemporary interiors.",
+    "sys1.title":"Whole Kitchen System","sys1.desc":"Complete functional solutions for the modern kitchen.",
+    "sys2.title":"Tall Cabinet System","sys2.desc":"Optimized storage for tall units and pantry spaces.",
+    "sys3.title":"Wall Cabinet System","sys3.desc":"Lift, access and organization for wall-mounted cabinetry.",
+    "sys4.title":"Corner Storage System","sys4.desc":"Making difficult corners accessible and useful.",
+    "sys5.title":"Base Cabinet System","sys5.desc":"Pull-out storage and functional organization for base units.",
+    "sys6.title":"Drawer Organization System","sys6.desc":"Intelligent internal organization for everyday essentials.",
+    "sys7.title":"Side Basket System","sys7.desc":"Slim storage solutions for narrow cabinet spaces.",
+    "sys8.title":"Waste Management System","sys8.desc":"Integrated waste sorting and storage within the kitchen.",
+    "sys9.title":"Sink System","sys9.desc":"Practical organization and storage around the sink area.",
+    "sys10.title":"Wardrobe System","sys10.desc":"Functional internal storage and organization for wardrobes.",
+
+    "spaces.kicker":"Spaces","spaces.title":"Four environments. Endless possibility.",
+    "space.cta":"Inquire about this space",
+    "space.home.num":"Space I","space.home.title":"Home",
+    "space.home.desc":"Considered furniture for daily life at home — deep-seated sofas, dining tables and bedroom pieces built on solid hardwood frames.",
+    "space.office.num":"Space II","space.office.title":"Office",
+    "space.office.desc":"Desks, storage and seating built for long days — steel-framed, cable-managed, and finished to match the rest of the room.",
+    "space.hotel.num":"Space III","space.hotel.title":"Hotel",
+    "space.hotel.desc":"Furniture and systems for guest rooms and public areas, built to withstand daily use without losing its quiet, considered character.",
+    "space.restaurant.num":"Space IV","space.restaurant.title":"Restaurant",
+    "space.restaurant.desc":"Dining and service furniture built to gather around, with finishes matched across every piece in the setting.",
+
+    "item.sofa.name":"Sofa, three-seat","item.bed.name":"Bed frame, queen","item.table.name":"Dining table, round",
+    "item.desk.name":"Workstation desk","item.cabinet.name":"Storage cabinet","item.chair.name":"Dining chairs, set",
+    "item.guestbed.name":"Guest room bed frame","item.lobby.name":"Lobby seating",
+    "price.request":"Price on request",
+
+    "sys1.explore":"Explore Whole Kitchen →","sys2.explore":"Explore Tall Cabinets →","sys3.explore":"Explore Wall Cabinets →",
+    "sys4.explore":"Explore Corner Storage →","sys5.explore":"Explore Base Cabinets →","sys6.explore":"Explore Drawer Organization →",
+    "sys7.explore":"Explore Side Baskets →","sys8.explore":"Explore Waste Management →","sys9.explore":"Explore Sink System →",
+    "sys10.explore":"Explore Wardrobes →",
+
+    "b2b.kicker":"B2B","b2b.title":"Solutions for professionals.",
+    "b2b.lead":"Furniture and interior systems specified for architects, designers, developers, contractors, hotels, restaurants and trade partners.",
+    "b2b.card1.title":"Architects & Designers","b2b.card1.desc":"Project specification, custom solutions and technical support.",
+    "b2b.card2.title":"Developers & Contractors","b2b.card2.desc":"Reliable furniture and interior systems for residential and commercial projects.",
+    "b2b.card3.title":"Hotels & Restaurants","b2b.card3.desc":"Furniture and functional systems designed for hospitality environments.",
+    "b2b.card4.title":"Trade Partners","b2b.card4.desc":"Solutions for showrooms, dealers and professional distribution partners.",
+    "b2b.cta":"Start a B2B enquiry",
+
+    "approach.title":"Made deliberately, from the frame up",
+    "approach.t1h":"Materials","approach.t1p":"Solid hardwoods and durable hardware, chosen for the long run rather than the showroom floor.",
+    "approach.t2h":"Craftsmanship","approach.t2p":"Every piece built and finished by hand, checked before it leaves the workshop.",
+    "approach.t3h":"Made to order","approach.t3p":"Sized and finished to fit your room, not built to sit on a warehouse shelf.",
+    "contact.eyebrow":"Visit or write to us",
+    "contact.title":"Let's talk about your space",
+    "contact.lead":"Send a few details and we'll follow up with materials, pricing and lead times — or message us directly on WhatsApp.",
+    "contact.phonelabel":"Phone / WhatsApp","contact.emaillabel":"Email","contact.addresslabel":"Showroom",
+    "contact.wabtn":"Message us on WhatsApp",
+    "contact.opt.kitchensystems":"Kitchen Systems","contact.opt.wardrobesystems":"Wardrobe Systems",
+    "contact.opt.b2b":"B2B / Trade","contact.opt.custom":"Custom Project",
+    "form.name":"Name","form.phone":"Phone","form.interest":"Interested in","form.other":"Other",
+    "form.message":"Message","form.messageph":"Tell us about the space or system you have in mind",
+    "form.submit":"Send inquiry","form.note":"This form opens your email app with the details pre-filled — connect it to a live inbox before launch.",
+    "footer.instagram":"Instagram","footer.facebook":"Facebook","footer.whatsapp":"WhatsApp",
+    "footer.copy":"© 2026 Levinna. All rights reserved."
+  },
+  ru: {
+    "nav.spaces":"Пространства","nav.systems":"Системы","nav.b2b":"B2B","nav.approach":"Подход","nav.contact":"Контакты",
+    "hero.eyebrow":"Levinna — мебель и интерьерные системы",
+    "hero.title":"Мебель и системы со смыслом.",
+    "hero.lead":"Продуманная мебель и интерьерные системы для дома, офиса и гостиничных пространств.",
+    "hero.cta1":"Смотреть пространства","hero.cta2":"Смотреть системы","hero.scroll":"Прокрутите",
+    "phil.quote":"Мебель должна ощущаться так, будто она всегда была здесь — спокойная, надёжная и созданная пережить любые тренды.",
+    "phil.cite":"— мастерская Levinna",
+
+    "systems.kicker":"Системы","systems.title":"Функциональность в деталях.",
+    "systems.lead":"Интеллектуальные кухонные, системы хранения и гардеробные системы, которые привносят движение, доступность и порядок в современный интерьер.",
+    "sys1.title":"Кухонная система целиком","sys1.desc":"Комплексные функциональные решения для современной кухни.",
+    "sys2.title":"Система высоких шкафов","sys2.desc":"Оптимизированное хранение для высоких модулей и кладовых зон.",
+    "sys3.title":"Система навесных шкафов","sys3.desc":"Подъём, доступ и организация для навесных шкафов.",
+    "sys4.title":"Угловая система хранения","sys4.desc":"Делает сложные углы доступными и полезными.",
+    "sys5.title":"Система напольных шкафов","sys5.desc":"Выдвижное хранение и функциональная организация для напольных модулей.",
+    "sys6.title":"Система организации ящиков","sys6.desc":"Продуманная внутренняя организация повседневных вещей.",
+    "sys7.title":"Система боковых корзин","sys7.desc":"Тонкие решения для хранения в узких секциях шкафа.",
+    "sys8.title":"Система утилизации отходов","sys8.desc":"Встроенная сортировка и хранение отходов на кухне.",
+    "sys9.title":"Система под мойкой","sys9.desc":"Практичная организация и хранение в зоне мойки.",
+    "sys10.title":"Гардеробная система","sys10.desc":"Функциональное внутреннее хранение и организация в гардеробной.",
+
+    "spaces.kicker":"Пространства","spaces.title":"Четыре среды. Безграничные возможности.",
+    "space.cta":"Узнать об этом пространстве",
+    "space.home.num":"Пространство I","space.home.title":"Дом",
+    "space.home.desc":"Продуманная мебель для повседневной жизни дома — глубокие диваны, обеденные столы и предметы для спальни на каркасе из массива дерева.",
+    "space.office.num":"Пространство II","space.office.title":"Офис",
+    "space.office.desc":"Столы, хранение и кресла для долгого рабочего дня — стальной каркас, кабель-менеджмент, отделка в тон интерьера.",
+    "space.hotel.num":"Пространство III","space.hotel.title":"Отель",
+    "space.hotel.desc":"Мебель и системы для номеров и общественных зон, созданные выдерживать ежедневную нагрузку, не теряя сдержанного характера.",
+    "space.restaurant.num":"Пространство IV","space.restaurant.title":"Ресторан",
+    "space.restaurant.desc":"Обеденная и сервисная мебель, объединённая единой отделкой каждого предмета.",
+
+    "item.sofa.name":"Диван трёхместный","item.bed.name":"Кровать двуспальная","item.table.name":"Обеденный стол, круглый",
+    "item.desk.name":"Рабочий стол","item.cabinet.name":"Шкаф для хранения","item.chair.name":"Обеденные стулья, комплект",
+    "item.guestbed.name":"Кровать для номера","item.lobby.name":"Мебель для лобби",
+    "price.request":"Цена по запросу",
+
+    "sys1.explore":"Смотреть кухонную систему →","sys2.explore":"Смотреть высокие шкафы →","sys3.explore":"Смотреть навесные шкафы →",
+    "sys4.explore":"Смотреть угловое хранение →","sys5.explore":"Смотреть напольные шкафы →","sys6.explore":"Смотреть организацию ящиков →",
+    "sys7.explore":"Смотреть боковые корзины →","sys8.explore":"Смотреть утилизацию отходов →","sys9.explore":"Смотреть систему мойки →",
+    "sys10.explore":"Смотреть гардеробные системы →",
+
+    "b2b.kicker":"B2B","b2b.title":"Решения для профессионалов.",
+    "b2b.lead":"Мебель и интерьерные системы для архитекторов, дизайнеров, застройщиков, подрядчиков, отелей, ресторанов и торговых партнёров.",
+    "b2b.card1.title":"Архитекторы и дизайнеры","b2b.card1.desc":"Спецификация проекта, индивидуальные решения и техническая поддержка.",
+    "b2b.card2.title":"Застройщики и подрядчики","b2b.card2.desc":"Надёжная мебель и интерьерные системы для жилых и коммерческих проектов.",
+    "b2b.card3.title":"Отели и рестораны","b2b.card3.desc":"Мебель и функциональные системы для объектов гостеприимства.",
+    "b2b.card4.title":"Торговые партнёры","b2b.card4.desc":"Решения для шоурумов, дилеров и партнёров по дистрибуции.",
+    "b2b.cta":"Оставить B2B-заявку",
+
+    "approach.title":"Сделано осознанно, от каркаса до отделки",
+    "approach.t1h":"Материалы","approach.t1p":"Массив дерева и надёжная фурнитура, выбранные на долгий срок, а не для витрины.",
+    "approach.t2h":"Мастерство","approach.t2p":"Каждое изделие сделано и отделано вручную, проверено перед отправкой из мастерской.",
+    "approach.t3h":"На заказ","approach.t3p":"Размер и отделка под вашу комнату, а не под складскую полку.",
+    "contact.eyebrow":"Приходите или напишите нам",
+    "contact.title":"Обсудим ваше пространство",
+    "contact.lead":"Оставьте немного информации, и мы свяжемся с материалами, ценами и сроками — или напишите нам напрямую в WhatsApp.",
+    "contact.phonelabel":"Телефон / WhatsApp","contact.emaillabel":"Эл. почта","contact.addresslabel":"Шоурум",
+    "contact.wabtn":"Написать в WhatsApp",
+    "contact.opt.kitchensystems":"Кухонные системы","contact.opt.wardrobesystems":"Гардеробные системы",
+    "contact.opt.b2b":"B2B / Опт","contact.opt.custom":"Индивидуальный проект",
+    "form.name":"Имя","form.phone":"Телефон","form.interest":"Интересует","form.other":"Другое",
+    "form.message":"Сообщение","form.messageph":"Расскажите о пространстве или системе, которую вы задумали",
+    "form.submit":"Отправить заявку","form.note":"Форма откроет ваше почтовое приложение с готовым письмом — подключите реальный ящик перед запуском.",
+    "footer.instagram":"Instagram","footer.facebook":"Facebook","footer.whatsapp":"WhatsApp",
+    "footer.copy":"© 2026 Levinna. Все права защищены."
+  },
+  uk: {
+    "nav.spaces":"Простори","nav.systems":"Системи","nav.b2b":"B2B","nav.approach":"Підхід","nav.contact":"Контакти",
+    "hero.eyebrow":"Levinna — меблі та інтер'єрні системи",
+    "hero.title":"Меблі та системи зі змістом.",
+    "hero.lead":"Продумані меблі та інтер'єрні системи для дому, офісу та готельних просторів.",
+    "hero.cta1":"Переглянути простори","hero.cta2":"Переглянути системи","hero.scroll":"Прокрутіть",
+    "phil.quote":"Меблі мають відчуватися так, ніби вони завжди були тут — спокійні, надійні та створені пережити будь-які тренди.",
+    "phil.cite":"— майстерня Levinna",
+
+    "systems.kicker":"Системи","systems.title":"Функціональність у деталях.",
+    "systems.lead":"Інтелектуальні кухонні, системи зберігання та гардеробні системи, які привносять рух, доступність і порядок у сучасний інтер'єр.",
+    "sys1.title":"Кухонна система повністю","sys1.desc":"Комплексні функціональні рішення для сучасної кухні.",
+    "sys2.title":"Система високих шаф","sys2.desc":"Оптимізоване зберігання для високих модулів і комор.",
+    "sys3.title":"Система навісних шаф","sys3.desc":"Підйом, доступ і організація для навісних шаф.",
+    "sys4.title":"Кутова система зберігання","sys4.desc":"Робить складні кути доступними та корисними.",
+    "sys5.title":"Система підлогових шаф","sys5.desc":"Висувне зберігання та функціональна організація для підлогових модулів.",
+    "sys6.title":"Система організації шухляд","sys6.desc":"Продумана внутрішня організація повсякденних речей.",
+    "sys7.title":"Система бокових кошиків","sys7.desc":"Тонкі рішення для зберігання у вузьких секціях шафи.",
+    "sys8.title":"Система утилізації відходів","sys8.desc":"Вбудоване сортування та зберігання відходів на кухні.",
+    "sys9.title":"Система під мийкою","sys9.desc":"Практична організація та зберігання в зоні мийки.",
+    "sys10.title":"Гардеробна система","sys10.desc":"Функціональне внутрішнє зберігання та організація в гардеробній.",
+
+    "spaces.kicker":"Простори","spaces.title":"Чотири середовища. Безмежні можливості.",
+    "space.cta":"Дізнатись про цей простір",
+    "space.home.num":"Простір I","space.home.title":"Дім",
+    "space.home.desc":"Продумані меблі для повсякденного життя вдома — глибокі дивани, обідні столи та предмети для спальні на каркасі з масиву дерева.",
+    "space.office.num":"Простір II","space.office.title":"Офіс",
+    "space.office.desc":"Столи, зберігання та крісла для довгого робочого дня — сталевий каркас, кабель-менеджмент, оздоблення в тон інтер'єру.",
+    "space.hotel.num":"Простір III","space.hotel.title":"Готель",
+    "space.hotel.desc":"Меблі та системи для номерів і громадських зон, створені витримувати щоденне навантаження, не втрачаючи стриманого характеру.",
+    "space.restaurant.num":"Простір IV","space.restaurant.title":"Ресторан",
+    "space.restaurant.desc":"Обідні та сервісні меблі, об'єднані єдиним оздобленням кожного предмета.",
+
+    "item.sofa.name":"Диван тримісний","item.bed.name":"Ліжко двоспальне","item.table.name":"Обідній стіл, круглий",
+    "item.desk.name":"Робочий стіл","item.cabinet.name":"Шафа для зберігання","item.chair.name":"Обідні стільці, комплект",
+    "item.guestbed.name":"Ліжко для номера","item.lobby.name":"Меблі для лобі",
+    "price.request":"Ціна за запитом",
+
+    "sys1.explore":"Переглянути кухонну систему →","sys2.explore":"Переглянути високі шафи →","sys3.explore":"Переглянути навісні шафи →",
+    "sys4.explore":"Переглянути кутове зберігання →","sys5.explore":"Переглянути підлогові шафи →","sys6.explore":"Переглянути організацію шухляд →",
+    "sys7.explore":"Переглянути бокові кошики →","sys8.explore":"Переглянути утилізацію відходів →","sys9.explore":"Переглянути систему мийки →",
+    "sys10.explore":"Переглянути гардеробні системи →",
+
+    "b2b.kicker":"B2B","b2b.title":"Рішення для професіоналів.",
+    "b2b.lead":"Меблі та інтер'єрні системи для архітекторів, дизайнерів, забудовників, підрядників, готелів, ресторанів і торгових партнерів.",
+    "b2b.card1.title":"Архітектори та дизайнери","b2b.card1.desc":"Специфікація проєкту, індивідуальні рішення та технічна підтримка.",
+    "b2b.card2.title":"Забудовники та підрядники","b2b.card2.desc":"Надійні меблі та інтер'єрні системи для житлових і комерційних проєктів.",
+    "b2b.card3.title":"Готелі та ресторани","b2b.card3.desc":"Меблі та функціональні системи для об'єктів гостинності.",
+    "b2b.card4.title":"Торгові партнери","b2b.card4.desc":"Рішення для шоурумів, дилерів і партнерів з дистрибуції.",
+    "b2b.cta":"Залишити B2B-заявку",
+
+    "approach.title":"Зроблено свідомо, від каркасу до оздоблення",
+    "approach.t1h":"Матеріали","approach.t1p":"Масив дерева та надійна фурнітура, обрані на довгий термін, а не для вітрини.",
+    "approach.t2h":"Майстерність","approach.t2p":"Кожен виріб зроблено та оздоблено вручну, перевірено перед відправкою з майстерні.",
+    "approach.t3h":"На замовлення","approach.t3p":"Розмір і оздоблення під вашу кімнату, а не під складську полицю.",
+    "contact.eyebrow":"Завітайте або напишіть нам",
+    "contact.title":"Обговоримо ваш простір",
+    "contact.lead":"Залиште трохи інформації, і ми зв'яжемось із матеріалами, цінами та термінами — або напишіть нам одразу в WhatsApp.",
+    "contact.phonelabel":"Телефон / WhatsApp","contact.emaillabel":"Ел. пошта","contact.addresslabel":"Шоурум",
+    "contact.wabtn":"Написати в WhatsApp",
+    "contact.opt.kitchensystems":"Кухонні системи","contact.opt.wardrobesystems":"Гардеробні системи",
+    "contact.opt.b2b":"B2B / Опт","contact.opt.custom":"Індивідуальний проєкт",
+    "form.name":"Ім'я","form.phone":"Телефон","form.interest":"Цікавить","form.other":"Інше",
+    "form.message":"Повідомлення","form.messageph":"Розкажіть про простір або систему, яку ви задумали",
+    "form.submit":"Надіслати заявку","form.note":"Форма відкриє ваш поштовий застосунок із готовим листом — підключіть реальну скриньку перед запуском.",
+    "footer.instagram":"Instagram","footer.facebook":"Facebook","footer.whatsapp":"WhatsApp",
+    "footer.copy":"© 2026 Levinna. Усі права захищено."
+  }
+};
+
+function applyLang(lang){
+  const dict = translations[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(dict[key]) el.setAttribute('placeholder', dict[key]);
+  });
+  document.querySelectorAll('.langswitch button').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang')===lang);
+  });
+  document.documentElement.lang = lang;
+  localStorage.setItem('levinna-lang', lang);
+}
+
+document.querySelectorAll('.langswitch button').forEach(btn=>{
+  btn.addEventListener('click', ()=>applyLang(btn.getAttribute('data-lang')));
+});
+
+document.querySelectorAll('.coll-cta, .syscard-explore').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    document.getElementById('interestSelect').value = btn.getAttribute('data-interest');
+  });
+});
+
+const b2bCtaBtn = document.getElementById('b2bCta');
+if(b2bCtaBtn){
+  b2bCtaBtn.addEventListener('click', ()=>{
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    document.getElementById('interestSelect').value = 'b2b';
+  });
+}
+
+/* ---------- In-page anchor navigation ---------- */
+/* Intercepts internal "#id" links and scrolls to the target directly, instead of
+   letting the browser change location.hash (which some embedded previews treat
+   as leaving the page). Works the same as normal anchor links on a real site. */
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+  const targetId = link.getAttribute('href');
+  if(targetId.length <= 1) return; // skip bare "#" placeholders
+  link.addEventListener('click', e=>{
+    const target = document.querySelector(targetId);
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+
+/* ---------- Mobile nav ---------- */
+const navToggleBtn = document.getElementById('navToggle');
+const mobileNavEl = document.getElementById('mobileNav');
+if(navToggleBtn && mobileNavEl){
+  navToggleBtn.addEventListener('click', ()=>{
+    mobileNavEl.classList.toggle('open');
+  });
+  mobileNavEl.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=> mobileNavEl.classList.remove('open'));
+  });
+  mobileNavEl.querySelectorAll('.mobilenav-langs button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      applyLang(btn.getAttribute('data-lang'));
+      mobileNavEl.classList.remove('open');
+    });
+  });
+}
+
+/* ---------- Systems intro video: mute/unmute toggle ---------- */
+(function(){
+  const video = document.querySelector('.systems-video video');
+  const muteBtn = document.getElementById('sysVideoMute');
+  const muteIcon = document.getElementById('sysVideoMuteIcon');
+  if(!video || !muteBtn) return;
+  muteBtn.addEventListener('click', ()=>{
+    video.muted = !video.muted;
+    muteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+    muteIcon.setAttribute('href', video.muted ? '#icon-sound-off' : '#icon-sound-on');
+  });
+})();
+
+/* ---------- Systems overview card scroller ---------- */
+(function(){
+  const scroller = document.getElementById('sysScroller');
+  if(!scroller) return;
+  const prevBtn = document.getElementById('sysPrev');
+  const nextBtn = document.getElementById('sysNext');
+  const bar = document.getElementById('sysProgressBar');
+  const firstCard = scroller.querySelector('.syscard');
+
+  function cardStep(){
+    if(!firstCard) return 320;
+    const style = getComputedStyle(firstCard);
+    return firstCard.getBoundingClientRect().width + parseFloat(style.marginRight || 0) + 24;
+  }
+  function updateBar(){
+    const max = scroller.scrollWidth - scroller.clientWidth;
+    const pct = max > 0 ? (scroller.scrollLeft / max) * 100 : 0;
+    bar.style.width = Math.max(8, Math.min(100, pct)) + '%';
+  }
+  prevBtn.addEventListener('click', ()=> scroller.scrollBy({left: -cardStep(), behavior:'smooth'}));
+  nextBtn.addEventListener('click', ()=> scroller.scrollBy({left: cardStep(), behavior:'smooth'}));
+  scroller.addEventListener('scroll', updateBar, {passive:true});
+  window.addEventListener('resize', updateBar);
+  updateBar();
+})();
+
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const data = new FormData(this);
+  const subject = encodeURIComponent('Levinna inquiry — ' + data.get('name'));
+  const body = encodeURIComponent(
+    'Name: ' + data.get('name') + '\n' +
+    'Phone: ' + data.get('phone') + '\n' +
+    'Interested in: ' + data.get('interest') + '\n' +
+    'Message: ' + data.get('message')
+  );
+  window.location.href = 'mailto:hello@levinna.com?subject=' + subject + '&body=' + body;
+});
+
+const headerEl = document.getElementById('siteHeader');
+window.addEventListener('scroll', ()=>{
+  headerEl.classList.toggle('solid', window.scrollY > 60);
+});
+
+const saved = localStorage.getItem('levinna-lang');
+applyLang(saved && translations[saved] ? saved : 'en');
+</script>
+
+</body>
+</html>
